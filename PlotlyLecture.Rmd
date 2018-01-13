@@ -1,0 +1,75 @@
+---
+title: "Plotly"
+author: "Me"
+date: "12/23/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Plotly
+
+a web application for creating and sharing data visualizations. Plotly can work with several programming languages like R, Python, and MS Excel. We're going to concentrate on creating different graphs with Plotly and sharing those graphs.
+
+```{r}
+library(plotly)
+```
+can share visualizations on their site, https://plot.ly/
+
+## Basic Scatterplot
+
+```{r}
+data("mtcars")
+plot_ly(mtcars, x = mtcars$wt, y = mpg, mode = 'markers')
+```
+
+## Scatterplot 3-D
+
+```{r}
+temp <- rnorm(100, mean = 30, sd = 5)
+pressure <- rnorm(100)
+dtime <- 1:100
+plot_ly(x = temp, y = pressure, z = dtime, type = "scatter3d", mode = "markers"
+        , color = temp)
+```
+
+## Heatmap
+
+```{r}
+terrain1 <- matrix(rnorm(100*100), nrow = 100, ncol = 100)
+plot_ly(z = terrain1, type = "heatmap")
+```
+
+## 3D Surface
+
+```{r}
+terrain2 <- matrix(sort(rnorm(100*100)), nrow = 100, ncol = 100)
+plot_ly(z = terrain2, type = "surface")
+```
+
+## Choropleth Maps
+
+```{r}
+state_pop <- data.frame(State = state.abb, Pop = as.vector(state.x77[,1]))
+state_pop$hover <- with(state_pop, paste(State, '<br>', "Population:", Pop))
+borders <- list(color = toRGB("red"))
+map_options <- list(
+  scope = 'usa',
+  projection = list(type = 'albers usa'),
+  showlakes = TRUE,
+  lakecolor = toRGB('white')
+)
+plot_ly(data = state_pop, z = state_pop$Pop, text = state_pop$hover, locations = state_pop$State,
+        type = 'choropleth', locationmode = 'USA-states',
+        color = state_pop$Pop, colors = 'Blues', marker = list(line = borders)) %>%
+  layout(title = 'US Population in 195', geo = map_options)
+```
+
+## Test
+
+```{r}
+data("USArrests")
+plot_ly(USArrests, x = ~Murder, y = ~UrbanPop, mode = 'markers', color = row.names(USArrests))
+```

@@ -1,0 +1,29 @@
+---
+title: "Plotly Presentation"
+author: "Martin Boros"
+date: "1/4/2018"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(plotly)
+```
+
+## US Murder Rate by State, 1973
+
+Comparing murder arrests per 100,000 resident to percentage of population that is urban, by state.
+
+## Slide with R Output
+
+```{r, echo = TRUE}
+summary(USArrests)
+```
+
+## Slide with Plot
+
+```{r, echo=F, warning=F, message=F}
+data("USArrests")
+plot_ly(USArrests, x = ~Murder, y = ~UrbanPop, mode = 'markers', trace = 'scatter', color = row.names(USArrests))
+```
+

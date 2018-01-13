@@ -1,0 +1,65 @@
+---
+title: "My Presentation"
+author: "Me"
+date: "11/5/2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## My First Map
+```{r, echo=FALSE}
+library(leaflet)
+df = data.frame(lat = runif(20, min = 39.2, max = 39.3),
+                lng = runif(20, min = -76.6, max = -76.5))
+my_map = df %>% leaflet() %>% addTiles() %>% addCircleMarkers()
+my_map
+```
+
+## My New Slide
+some comments
+
+*italics*
+
+**bold**
+`for (i %in% 1:10)`
+
+```{r, comment="", echo=TRUE}
+head(mtcars)
+```
+
+
+## My Title
+
+- Bullet one
+- Bullet two
+
+1. Item a
+2. Item b
+
+## R Markdown
+
+This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+## Slide with Bullets
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+## Slide with R Output
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+

@@ -1,0 +1,21 @@
+---
+title: "Random Forests"
+author: "Me"
+date: "1/13/2018"
+output: html_document
+---
+
+## Random forests
+
+* bootstrap samples
+* at each split, boostrap variables
+* grow multiple trees and vote
+
+
+* Pros:
+    - accuracy
+* Cons:
+    - speed
+    - interpretability
+    - overfitting
+    
